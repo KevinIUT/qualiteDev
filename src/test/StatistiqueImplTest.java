@@ -1,5 +1,5 @@
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.testng.annotations.Test;
+import org.testng.Assert;
 
 public class StatistiqueImplTest {
 
@@ -9,7 +9,7 @@ public class StatistiqueImplTest {
         Voiture voiture = new Voiture("Toyota", 10000);
         statistique.ajouter(voiture);
 
-        assertEquals(1, statistique.listeVoiture.size());
+        Assert.assertEquals(1, statistique.listeVoiture.size());
     }
 
     @Test
@@ -18,7 +18,7 @@ public class StatistiqueImplTest {
 
         try {
             statistique.prix();
-            fail("Une exception ArithmeticException aurait dû être lancée.");
+            Assert.fail("Une exception ArithmeticException aurait dû être lancée.");
         } catch (ArithmeticException e) {
         }
     }
@@ -35,9 +35,10 @@ public class StatistiqueImplTest {
 
         try {
             float prixFinal = statistique.prix();
-            assertTrue("Le prix final ne doit pas être inférieur à 0", prixFinal >= 0);
+            Assert.assertTrue(prixFinal >= 0, "Le prix final ne doit pas être inférieur à 0");
         } catch (ArithmeticException e) {
-            fail("Une exception ne devrait pas être lancée");
+            // Si l'exception est lancée, le test échoue
+            Assert.fail("Une exception ne devrait pas être lancée");
         }
     }
     @Test
@@ -72,7 +73,7 @@ public class StatistiqueImplTest {
 
         float prixAttendu = prixTotal - remiseTotal;
 
-        assertEquals(prixAttendu, prixFinal, 0.01);
+        Assert.assertEquals(prixAttendu, prixFinal, 0.01);
     }
 
 
