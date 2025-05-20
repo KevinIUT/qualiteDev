@@ -1,7 +1,10 @@
+package com.example;
 
 import org.junit.jupiter.api.Test;
 
 import org.testng.Assert;
+
+import com.example.Voiture;
 
 public class VoitureTest
 {

@@ -1,5 +1,10 @@
+package com.example;
+
 import org.testng.annotations.Test;
 import org.testng.Assert;
+
+import com.example.StatistiqueImpl;
+import com.example.Voiture;
 
 public class StatistiqueImplTest {
 

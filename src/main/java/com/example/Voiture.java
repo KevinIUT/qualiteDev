@@ -1,3 +1,5 @@
+package com.example;
+
 public class Voiture
 {
     private String marque;

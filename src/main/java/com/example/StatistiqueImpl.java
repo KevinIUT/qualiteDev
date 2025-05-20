@@ -1,3 +1,6 @@
+package com.example;
+
+import com.example.Statistique;
 import java.util.ArrayList;
 
 public class StatistiqueImpl implements Statistique {
