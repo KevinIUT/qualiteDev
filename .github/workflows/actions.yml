@@ -1,16 +1,14 @@
-name: Java CI with Gradle
+name: CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  job1:
     runs-on: ubuntu-latest
+    name: Build, Test, and Generate JaCoCo Badge
 
     steps:
       - name: Checkout code
@@ -20,12 +18,14 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'temurin'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Build, Test, and Build Docker Image
+        run: |
+          export SHELL=/bin/bash
+          ./gradlew clean build test   # Gradle build et test
 
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      - name: Run tests
-        run: ./gradlew test
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
